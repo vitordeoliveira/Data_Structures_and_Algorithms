@@ -3,52 +3,49 @@
 class Stack {
   private int arr[];
   private int top;
-  private int capacity;
+  private int size;
 
   // Creating a stack
-  Stack(int size) {
+  Stack(int size){
+    this.size = size;
     arr = new int[size];
-    capacity = size;
     top = -1;
   }
 
   // Add elements into stack
-  public void push(int x) {
-    if (isFull()) {
+  public void push(int x){
+    if(isFull()){
       System.out.println("OverFlow\nProgram Terminated\n");
       System.exit(1);
     }
 
     System.out.println("Inserting " + x);
-    arr[++top] = x;
+    arr[++top]=x;
   }
 
   // Remove element from stack
-  public int pop() {
-    if (isEmpty()) {
+  public void pop(){
+    if(isEmpty()){
       System.out.println("STACK EMPTY");
       System.exit(1);
     }
-    return arr[top--];
-  }
 
-  // Utility function to return the size of the stack
-  public int size() {
-    return top + 1;
+    System.out.println("pop " + arr[top]);
+    top--;
   }
-
+ 
   // Check if the stack is empty
-  public Boolean isEmpty() {
+  private Boolean isEmpty(){
     return top == -1;
   }
 
   // Check if the stack is full
-  public Boolean isFull() {
-    return top == capacity - 1;
+  private Boolean isFull(){
+    return top == size - 1;
   }
 
   public void printStack() {
-    for (int i = 0; i <= top; i++) {
+    for(int i=0; i<=top; i++){
       System.out.println(arr[i]);
     }
   }
@@ -61,6 +58,7 @@ class Stack {
     stack.push(3);
     stack.push(4);
 
+    stack.pop();
     stack.pop();
     System.out.println("\nAfter popping out");
 
