@@ -38,10 +38,14 @@ class hashTable:
         new_node = Node(key, value)
         colission_counter: int = 0
 
+        # If position of table is empty
         if(self.table[self.position(key)] == 0):
             self.table[self.position(key)] = new_node
             self.elementCount += 1
+
+        # If already have a value on the position
         else:
+            # The same thing as DO_WHILE but in python
             while(True):
                 print("colission")
                 colission_counter += 1
@@ -49,12 +53,22 @@ class hashTable:
                     self.table[self.position(key)+colission_counter] = new_node
                     self.elementCount += 1
                     break
+                # If the key already exist and the value is new, update just the value not fill the hash table
+                elif(self.table[self.position(key)+colission_counter].key == key
+                     and self.table[self.position(key)+colission_counter].value != value):
+                    print(f"Update value of key: {key}")
+                    self.table[self.position(key)+colission_counter] = new_node
+                    self.elementCount += 1
+                    break
 
-
-    def remove(self, element):
-        pass
+    def remove(self, key) -> None:
+        while(True):
+            if(self.table[self.position(key)] != 0 and self.table[self.position(key)].key == key):
+                self.table[self.position(key)] = None
+                break
 
     # method to display the hash table
+
     def __str__(self):
         string = ""
         for i in self.table:
@@ -69,9 +83,7 @@ class hashTable:
 table1 = hashTable(10)
 table1.insert(4, 110)
 table1.insert("vitor", 10)
-table1.insert("vitor", 10)
-table1.insert("vitor", 10)
-table1.insert("vitor", 10)
-table1.insert("vitor", 10)
+table1.insert("vitor", 11)
+table1.insert("vitor", 12)
 
 print(table1)
