@@ -18,9 +18,6 @@ class hashTable:
         self.size = size
         # list(0 for _ in range(size))
 
-    # method that checks if the hash table is full or not
-    def isFull(self) -> bool:
-        return self.elementSize == self.size
 
     # method that returns position for a given element
     def hashFunction(self, element: int) -> None:
@@ -74,10 +71,26 @@ class hashTable:
                     break
 
     def remove(self, key) -> None:
+        new_position = self.position(key)
+        colission_counter = 0
         while(True):
-            if(self.table[self.position(key)] != 0 and self.table[self.position(key)].key == key):
-                self.table[self.position(key)] = None
+            if(colission_counter == self.size):
+                print("not found")
                 break
+
+            if(new_position + colission_counter >= self.size):
+                new_position -= self.size
+
+            new_position += colission_counter
+            if(self.table[new_position] == 0):
+                break
+            elif(self.table[new_position].key == key):
+                print(f"key: {key} removed")
+                self.table[new_position] = 0
+                break
+            else:
+                colission_counter += 1
+
 
     # method to display the hash table
     def __str__(self):
@@ -89,11 +102,12 @@ class hashTable:
                 string += (f"{index} - [{i}]\n")
         return string
 
+
+    # method to display the hash value
     def __getitem__(self, key):
         new_position = self.position(key)
         colission_counter = 0
         while(True):
-            print(colission_counter)
             if(colission_counter == self.size):
                 print("not found")
                 return None
@@ -118,6 +132,9 @@ hashT.insert(9, "110")
 hashT.insert("developer", [1, 2, 3, 4, 5])
 hashT.insert(9, "another string")
 hashT.insert("full-Stack", (1, 2, 3, 5))
+print(hashT)
+
+hashT.remove(8)
 
 print(hashT["full-Stack"])
 print(hashT)
