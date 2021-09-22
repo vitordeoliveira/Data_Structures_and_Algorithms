@@ -52,7 +52,11 @@ maxheap.insert(4)
 maxheap.insert(5)
 maxheap.insert(6)
 maxheap.insert(7)
+
+# Peek is the first
 maxheap.print()
+
+# Extract is delete the first node
 maxheap.delete(0)
 maxheap.delete(0)
 maxheap.print()

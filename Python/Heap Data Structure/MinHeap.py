@@ -50,7 +50,11 @@ minheap.insert(5)
 minheap.insert(6)
 minheap.insert(7)
 minheap.insert(-1)
+
+# Peek is the first
 minheap.print()
+
+# Extract is delete the first node
 minheap.deleteIndex(0)
 minheap.deleteIndex(0)
 minheap.deleteIndex(0)
