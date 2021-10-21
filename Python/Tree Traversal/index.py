@@ -15,13 +15,13 @@ def preorder(root:Node):
         preorder(root.r)
 
 
-def inorder(root):
+def inorder(root:Node):
     if root:
         inorder(root.l)
         print((root.val), end="-")
         inorder(root.r)
 
-def postorder(root):
+def postorder(root:Node):
     if root:
         postorder(root.l)
         postorder(root.r)
