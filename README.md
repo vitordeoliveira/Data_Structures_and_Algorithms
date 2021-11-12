@@ -5,24 +5,17 @@ Is a folder of DS in different langs for everyone who is starting to learn DS
 
 Progress:
 
-# PYTHON - IN PROGRESS
 
-C++ - PAUSED
-
-GOLANG - PAUSED
-
-RUSTLANG - PAUSED
-
-JAVA - PAUSED
-
-kOTLIN - PAUSED
-
-C - PAUSED
-
-RUBY - PAUSED
-
-JAVASCRIPT - PAUSED
-
+| Language | Progress |
+| ------ | ------ |
+| PYTHON | [in progress] |
+| C++ | [paused] |
+| RUSTLANG | [paused] |
+| C | [paused] |
+| JAVA | [paused] |
+| KOTLIN | [paused] |
+| RUBY | [paused] |
+| PYTHJAVASCRIPTON | [paused] |
 
 
 
