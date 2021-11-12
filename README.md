@@ -8,7 +8,7 @@ Progress:
 
 | Language | Progress |
 | ------ | ------ |
-| [PYTHON] | <span style="color:green">*in progress*</span> |
+| [PYTHON] | <em>**In Progress**</em> |
 | [C++] | paused |
 | [RUSTLANG] | paused |
 | [C] | paused |
