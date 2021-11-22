@@ -36,8 +36,14 @@ class TreeBST:
 
         if current_node is not None:
             self.print_inorder(current_node.left, count+1)
-            print(current_node.value, end="-")
+            print(current_node.value, end="->")
             self.print_inorder(current_node.right, count+1)
+
+    def minValue(self):
+        copy = self.root
+        while(copy.left is not None):
+            copy = copy.left
+        print(f'\n{copy.value}')
 
 
 
@@ -48,8 +54,8 @@ tree.insert(3)
 tree.insert(2)
 tree.insert(1)
 tree.insert(1)
+tree.insert(0)
 tree.insert(2)
-tree.insert(1)
-
 
 tree.print_inorder()
+tree.minValue()
