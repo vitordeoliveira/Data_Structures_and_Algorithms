@@ -75,8 +75,11 @@ class TreeBST:
             else:
                 # I DO NOT LIKE THIS SOLUTION
                 if count == 0:
-                    current_node = current_node.left
-                    self.root = current_node
+                    if current_node.left is not None:
+                        current_node = current_node.left
+                        self.root = current_node
+                    else:
+                        self.root = None
                 return current_node.left
         
         return current_node
@@ -110,7 +113,7 @@ print()
 tree.deleteNode(1)
 tree.deleteNode(2)
 tree.deleteNode(3)
-# tree.deleteNode(4)
+tree.deleteNode(4)
 tree.print_inorder()
 print()
 
