@@ -2,7 +2,7 @@
 
 class Node:
     def __init__(self, value):
-        self.value = value
+        self.value:int = value
         self.left = None
         self.right = None
 
@@ -48,7 +48,7 @@ class TreeBST:
         while(copy.left is not None):
             copy = copy.left
         # print(f'\n{copy.value}')
-        return copy.value
+        return copy
 
     def deleteNode(self, value, current_node: Node = None, count=0):
 
@@ -68,19 +68,26 @@ class TreeBST:
             current_node.right = self.deleteNode(
                 value, current_node.right, count+1)
         else:
-            if current_node.right is not None:
-                current_node.value = self.minValue(current_node.right)
-                current_node.right = self.deleteNode(current_node.value, current_node.right, count+1)
-                return current_node
-            else:
-                # I DO NOT LIKE THIS SOLUTION
+            
+            if current_node.left is None:
+                temp = current_node.right
+                current_node = None
                 if count == 0:
-                    if current_node.left is not None:
-                        current_node = current_node.left
-                        self.root = current_node
-                    else:
-                        self.root = None
-                return current_node.left
+                    self.root = temp
+                return temp
+            elif current_node.right is None:
+                temp = current_node.left
+                current_node = None
+                if count == 0:
+                    self.root = temp
+                return temp
+
+            temp = self.minValue(current_node.right)
+
+            current_node.value = temp.value
+
+            # Delete the inorder successor
+            current_node.right = self.deleteNode(temp.value, current_node.right, count+1)
         
         return current_node
 
@@ -91,12 +98,9 @@ tree = TreeBST()
 tree.insert(3)
 tree.insert(2)
 tree.insert(1)
-# tree.insert(1)
-# tree.insert(0)
-# tree.insert(2)
-tree.insert(4)
-# tree.insert(5)
-# tree.insert(3.1)
+tree.insert(1)
+
+tree.insert(3.1)
 
 # tree.print_inorder()
 # tree.minValue()
@@ -108,12 +112,12 @@ tree.insert(4)
 tree.print_inorder()
 print()
 
-# tree.deleteNode(3)
-# tree.deleteNode(2)
-tree.deleteNode(1)
-tree.deleteNode(2)
 tree.deleteNode(3)
-tree.deleteNode(4)
+tree.deleteNode(2)
+tree.deleteNode(1)
+tree.deleteNode(3.1)
+# tree.deleteNode(3)
+# tree.deleteNode(4)
 tree.print_inorder()
 print()
 
