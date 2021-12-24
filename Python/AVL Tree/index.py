@@ -1,4 +1,5 @@
 # AVL tree implementation in Python
+import sys
 
 
 class Node:
@@ -10,15 +11,15 @@ class Node:
 
 
 class AVLTree:
-    def insert(self, root: Node, value) -> Node:
+    def insert_node(self, root: Node, value) -> Node:
 
         # Find the correct location and insert the node
         if not root:
             return Node(value)
         elif value < root.value:
-            root.left = self.insert(root.left, value)
+            root.left = self.insert_node(root.left, value)
         else:
-            root.right = self.insert(root.right, value)
+            root.right = self.insert_node(root.right, value)
 
         root.height = 1 + max(self.getHeight(root.left),
                               self.getHeight(root.right))
@@ -43,7 +44,6 @@ class AVLTree:
         return root
 
     def leftRotate(self, z: Node) -> None:
-        print("leftRotate")
         y: Node = z.right
         T2 = y.left
         y.left = z
@@ -56,7 +56,6 @@ class AVLTree:
         return y
 
     def rigthRotate(self, z: Node) -> None:
-        print("rigthRotate")
         y: Node = z.left
         T2 = y.right
         y.right = z
@@ -84,15 +83,15 @@ class AVLTree:
             node = node.left
         return node
 
-    def delete(self, root: Node, value) -> Node:
+    def delete_node(self, root: Node, value) -> Node:
 
         if root is None:
             return root
 
         if value < root.value:
-            root.left = self.delete(root.left, value)
+            root.left = self.delete_node(root.left, value)
         elif value > root.value:
-            root.right = self.delete(root.right, value)
+            root.right = self.delete_node(root.right, value)
         else:
 
             if root.left is None:
@@ -106,10 +105,28 @@ class AVLTree:
 
             temp = self.getMinValueNode(root.right)
             root.value = temp.value
-            root.right = self.delete(root.right, temp.value)
+            root.right = self.delete_node(root.right, temp.value)
+
+
+        root.height = 1 + max(self.getHeight(root.left),
+                              self.getHeight(root.right))
+
+        balanceFactor = self.getBalance(root)
+        if balanceFactor > 1:
+            if self.getBalance(root.left) >= 0:
+                return self.rigthRotate(root)
+            else:
+                root.left = self.leftRotate(root.left)
+                return self.rigthRotate(root)
+
+        if balanceFactor < -1:
+            if self.getBalance(root.right) <= 0:
+                return self.leftRotate(root)
+            else:
+                root.right = self.rigthRotate(root.right)
+                return self.leftRotate(root)
 
         return root
-        # Balance deletion
 
     def print_inorder(self, current_node=None, count=0):
         # if count == 0:
@@ -120,19 +137,36 @@ class AVLTree:
             print(current_node.value, end="->")
             self.print_inorder(current_node.right, count+1)
 
+    def printHelper(self, currPtr, indent, last):
+        if currPtr != None:
+            sys.stdout.write(indent)
+            if last:
+                sys.stdout.write("R----")
+                indent += "     "
+            else:
+                sys.stdout.write("L----")
+                indent += "|    "
+            print(currPtr.value)
+            self.printHelper(currPtr.left, indent, False)
+            self.printHelper(currPtr.right, indent, True)
+
 
 tree = AVLTree()
 root = None
 
-root = tree.insert(root, 1)
-root = tree.insert(root, 2)
-root = tree.insert(root, -1)
-root = tree.insert(root, 9)
-root = tree.insert(root, -213)
-root = tree.insert(root, 321)
 
+root = tree.insert_node(root, 6)
+root = tree.insert_node(root, 213)
 
-tree.print_inorder(root)
+nums = [6,1,3,10,5,213]
+for num in nums:
+    root = tree.insert_node(root, num)
+    # root = tree.delete_node(root, num)
 
-print()
+root = tree.delete_node(root, 213)
+root = tree.delete_node(root, 213)
+root = tree.delete_node(root, 6)
+root = tree.delete_node(root, 6)
+
+tree.printHelper(root, "", True)
 # print(tree.getMinValueNode(root))
