@@ -57,6 +57,8 @@ class BTree:
 
     def split_child(self, current_node):
         split_element_index = math.floor(len(current_node.values)/2)
+        if(self.max_children % 2 == 0):
+            split_element_index = split_element_index - 1
         temp = current_node.values[split_element_index]
         current_node.values.pop(split_element_index)
         leftValues = Node(
@@ -80,7 +82,7 @@ class BTree:
         pass
 
 
-B = BTree(3)
+B = BTree(4)
 root = None
 root = B.insert(root, 1)
 root = B.insert(root, 2)
@@ -92,11 +94,11 @@ root = B.insert(root, 7)
 root = B.insert(root, 8)
 root = B.insert(root, 9)
 root = B.insert(root, 10)
-root = B.insert(root, 11)
-root = B.insert(root, 12)
-root = B.insert(root, 13)
-root = B.insert(root, 14)
-root = B.insert(root, 15)
+# root = B.insert(root, 11)
+# root = B.insert(root, 12)
+# root = B.insert(root, 13)
+# root = B.insert(root, 14)
+# root = B.insert(root, 15)
 # root = B.insert(root, 19)
 
 print()
