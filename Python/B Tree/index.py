@@ -73,16 +73,28 @@ class BTree:
     def is_leaf(self, current_node: Node):
         return len(current_node.child) == 0
 
-    # Print the tree
-    def print_tree(self, x, l=0):
+    def delete_node(self, current_node, value):
         pass
+
+    # Print the tree
+    def print_tree(self, current_node: Node):
+        i = 0
+        for x in range(len(current_node.values)):
+            i += 1
+            if(not self.is_leaf(current_node)):
+                self.print_tree(current_node.child[x])
+            print(current_node.values[x])
+
+        if(not self.is_leaf(current_node)):
+            self.print_tree(current_node.child[i])
+
     # Search key in the tree
 
     def search_key(self, k, x=None):
         pass
 
 
-B = BTree(4)
+B = BTree(3)
 root = None
 root = B.insert(root, 1)
 root = B.insert(root, 2)
@@ -92,8 +104,8 @@ root = B.insert(root, 5)
 root = B.insert(root, 6)
 root = B.insert(root, 7)
 root = B.insert(root, 8)
-root = B.insert(root, 9)
-root = B.insert(root, 10)
+# root = B.insert(root, 9)
+# root = B.insert(root, 10)
 # root = B.insert(root, 11)
 # root = B.insert(root, 12)
 # root = B.insert(root, 13)
@@ -101,7 +113,7 @@ root = B.insert(root, 10)
 # root = B.insert(root, 15)
 # root = B.insert(root, 19)
 
-print()
+B.print_tree(root)
 
 # for i in range(10):
 #     B.insert((1, 2 * i))
