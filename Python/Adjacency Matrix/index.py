@@ -1,4 +1,4 @@
-# Adjacency Matrix representation in Python in a undirected graph
+# Adjacency Matrix representation in Python for a undirected graph
 import time
 
 
