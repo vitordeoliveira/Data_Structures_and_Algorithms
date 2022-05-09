@@ -68,11 +68,12 @@ void push(Queue *qu, int item)
 void pop(Queue *qu)
 {
 
-    if (qu->head == qu->top)
+    if (qu->head > qu->top)
     {
         qu->head = -1;
         qu->top = -1;
     }
+
     if (isEmpty(qu))
     {
 
@@ -81,12 +82,11 @@ void pop(Queue *qu)
         std::string temp;
         cin.ignore();
         cin.ignore();
+        return;
     }
-    else
-    {
-        qu->items[qu->head] = 0;
-        qu->head++;
-    }
+
+    qu->items[qu->head] = 0;
+    qu->head++;
 }
 
 void printQueue(Queue *qu)
@@ -101,11 +101,13 @@ void printQueue(Queue *qu)
     cout << endl;
 }
 
-void showOptions(Queue *qu)
+void options(Queue *qu, string *ptr)
 {
     cout << "OPTIONS: \n";
     cout << "P: POP \n";
     cout << "Q: EXIT\n";
+    cout << "Add a number: ";
+    cin >> *ptr;
 }
 
 bool is_number(const std::string &s)
@@ -123,13 +125,14 @@ int main()
     createEmptyQueue(q);
 
     string option;
+    string *ptr_opt;
+    ptr_opt = &option;
+    
     while (option != "Q")
     {
         system("clear");
         printQueue(q);
-        showOptions(q);
-        cout << "Add a number: ";
-        cin >> option;
+        options(q, ptr_opt);
 
         if (is_number(option))
         {
