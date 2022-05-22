@@ -15,7 +15,7 @@ using namespace std;
 
 struct Queue
 {
-    mutable int items[MAX];
+    int items[MAX];
     int top;
     int head;
 };
@@ -68,7 +68,7 @@ void push(Queue *qu, int item)
 void pop(Queue *qu)
 {
 
-    if (qu->head > qu->top)
+    if (qu->head >= qu->top)
     {
         qu->head = -1;
         qu->top = -1;
@@ -77,7 +77,6 @@ void pop(Queue *qu)
     if (isEmpty(qu))
     {
 
-        int test;
         printf("STACK IS EMPTY \n");
         std::string temp;
         cin.ignore();
@@ -121,7 +120,6 @@ bool is_number(const std::string &s)
 int main()
 {
     Queue *q = (Queue *)malloc(sizeof(Queue));
-
     createEmptyQueue(q);
 
     string option;
