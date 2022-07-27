@@ -28,5 +28,5 @@ Progress:
    [KOTLIN]: <https://kotlinlang.org/>
    [RUBY]: <https://www.ruby-lang.org/en/>
    [JAVASCRIPT]: <https://www.javascript.com/>
-   [JAVASCRIPT]: <https://go.dev/>
+   [GO]: <https://go.dev/>
 
