@@ -8,8 +8,8 @@ Progress:
 
 | Language | Progress |
 | ------ | ------ |
-| [PYTHON] | <em>**In Progress**</em> |
-| [C++] | <em>**In Progress**</em> |
+| [PYTHON] | paused |
+| [C++] | paused |
 | [RUSTLANG] | paused |
 | [C] | paused |
 | [JAVA] | paused |
